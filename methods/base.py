@@ -17,7 +17,7 @@ import torch.nn as nn
 import torchaudio
 
 from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
+#from torch.utils.tensorboard import SummaryWriter
 from torchaudio.transforms import MFCC
 import torch.nn.functional as F
 
@@ -25,11 +25,13 @@ from utils.data_augmentation import mixup_data
 from utils.data_loader import SpeechDataset
 
 from utils.train_utils import select_model, select_optimizer
-from audiomentations import Compose, AddGaussianNoise, PitchShift, Shift, FrequencyMask, ClippingDistortion
+from audiomentations import Compose, AddGaussianNoise, PitchShift, Shift, ClippingDistortion
+
+from audiomentations import SpecFrequencyMask as FrequencyMask
 from utils.data_loader import TimeMask
 
 logger = logging.getLogger()
-writer = SummaryWriter("tensorboard")
+#writer = SummaryWriter("tensorboard")
 
 
 class ICaRLNet(nn.Module):
@@ -271,13 +273,13 @@ class BaseMethod:
                 test_loader=test_loader, criterion=self.criterion
             )
 
-            writer.add_scalar(f"task{cur_iter}/train/loss", train_loss, epoch)
-            writer.add_scalar(f"task{cur_iter}/train/acc", train_acc, epoch)
-            writer.add_scalar(f"task{cur_iter}/test/loss", eval_dict["avg_loss"], epoch)
-            writer.add_scalar(f"task{cur_iter}/test/acc", eval_dict["avg_acc"], epoch)
-            writer.add_scalar(
-                f"task{cur_iter}/train/lr", self.optimizer.param_groups[0]["lr"], epoch
-            )
+            #writer.add_scalar(f"task{cur_iter}/train/loss", train_loss, epoch)
+            #writer.add_scalar(f"task{cur_iter}/train/acc", train_acc, epoch)
+            #writer.add_scalar(f"task{cur_iter}/test/loss", eval_dict["avg_loss"], epoch)
+            #writer.add_scalar(f"task{cur_iter}/test/acc", eval_dict["avg_acc"], epoch)
+            #writer.add_scalar(
+                #f"task{cur_iter}/train/lr", self.optimizer.param_groups[0]["lr"], epoch
+            #)
 
             logger.info(
                 f"Task {cur_iter} | Epoch {epoch + 1}/{n_epoch} | train_loss {train_loss:.4f} | train_acc {train_acc:.4f} | "

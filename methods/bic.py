@@ -14,14 +14,14 @@ import torch.nn as nn
 from copy import deepcopy
 
 from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
+#from torch.utils.tensorboard import SummaryWriter
 
 from methods.base import BaseMethod
 from utils.train_utils import select_model, select_optimizer
 from utils.data_loader import SpeechDataset
 
 logger = logging.getLogger()
-writer = SummaryWriter("tensorboard")
+#writer = SummaryWriter("tensorboard")
 
 
 class BiasCorrectionLayer(nn.Module):

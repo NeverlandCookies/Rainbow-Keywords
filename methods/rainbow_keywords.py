@@ -17,12 +17,12 @@ from methods.base import BaseMethod
 from utils.data_loader import SpeechDataset
 
 from utils.data_augmentation import mixup_data
-from torch.utils.tensorboard import SummaryWriter
+# from torch.utils.tensorboard import SummaryWriter
 
 from utils.kd_manager import KdManager
 
 logger = logging.getLogger()
-writer = SummaryWriter("tensorboard")
+#writer = SummaryWriter("tensorboard")
 
 
 def cycle(iterable):

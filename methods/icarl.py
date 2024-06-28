@@ -19,13 +19,13 @@ from torch import nn
 
 from methods.base import BaseMethod
 
-from torch.utils.tensorboard import SummaryWriter
+#from torch.utils.tensorboard import SummaryWriter
 
 from utils.data_augmentation import mixup_data
 from utils.train_utils import select_optimizer
 
 logger = logging.getLogger()
-writer = SummaryWriter("tensorboard")
+#writer = SummaryWriter("tensorboard")
 
 
 class ICaRLNet(nn.Module):

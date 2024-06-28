@@ -16,7 +16,7 @@ from collections import defaultdict
 import numpy as np
 import torch
 from torch import nn
-from torch.utils.tensorboard import SummaryWriter
+#from torch.utils.tensorboard import SummaryWriter
 
 from configuration import config
 from utils.data_loader import get_train_datalist, get_test_datalist
@@ -46,7 +46,7 @@ def main():
     fileHandler.setFormatter(formatter)
     logger.addHandler(fileHandler)
 
-    writer = SummaryWriter("tensorboard")
+    # writer = SummaryWriter("tensorboard")
 
     if torch.cuda.is_available() and args.debug is False:
         device = torch.device("cuda")
@@ -150,7 +150,7 @@ def main():
                  range(len(task_records["task_acc"]) - 1)]))
         # Notify to NSML
         logger.info("[2-5] Report task result")
-        writer.add_scalar("Metrics/TaskAcc", task_acc, cur_iter)
+        #writer.add_scalar("Metrics/TaskAcc", task_acc, cur_iter)
     np.save(f"results/{save_path}.npy", task_records["task_acc"])
     # Total time (T)
     duration = time.time() - start_time
@@ -180,7 +180,7 @@ def main():
     logger.info(f"Total time {duration}, Avg: {duration / args.n_tasks}s")
     logger.info(f'BWT: {np.mean(task_records["bwt_list"])}, std: {np.std(task_records["bwt_list"])}')
     logger.info(f"A_last {A_last} | A_avg {A_avg} | F_last {F_last} | I_last {I_last}")
-    writer.close()
+    #writer.close()
 
 
 if __name__ == "__main__":

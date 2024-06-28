@@ -12,7 +12,7 @@ import argparse
 def base_parser():
     parser = argparse.ArgumentParser(description="Class Incremental Learning Research")
     # Data root.
-    parser.add_argument("--data_root", type=str, default='/home/xiaoyang/Dev/kws-efficient-cl/dataset/collection')
+    parser.add_argument("--data_root", type=str, default='/root/Rainbow-Keywords/dataset/collection')
     # Mode and Exp. Settings.
     parser.add_argument(
         "--mode",

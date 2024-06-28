@@ -19,14 +19,14 @@ def readlines(datapath):
 
 def main():
     parser = argparse.ArgumentParser(description="Input optional guidance for training")
-    parser.add_argument("--dpath", default="./", type=str, help="The path of dataset")
+    parser.add_argument("--dpath", default="/root/Rainbow-Keywords/dataset", type=str, help="The path of dataset")
     parser.add_argument("--seed", type=int, default=3, help="Random seed number.")
     parser.add_argument("--dataset", type=str, default="gsc", help="[gsc]")
     parser.add_argument("--n_tasks", type=int, default=6, help="The number of tasks")
     parser.add_argument("--n_cls_a_task", type=int, default=3, help="The number of class of each task")
     parser.add_argument("--n_init_cls", type=int, default=15, help="The number of classes of initial task")
     parser.add_argument("--exp_name", type=str, default="disjoint", help="[disjoint, blurry]")
-    parser.add_argument("--mode", type=str, default="train", help="[train, test]")
+    parser.add_argument("--mode", type=str, default="test", help="[train, test]")
     args = parser.parse_args()
     data_path = args.dpath
     class_list_0 = ["four", "marvin", "on", "sheila", "cat", "five"]

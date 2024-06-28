@@ -6,13 +6,13 @@
 @Description : joint
 """
 import logging
-from torch.utils.tensorboard import SummaryWriter
+#from torch.utils.tensorboard import SummaryWriter
 from methods.base import BaseMethod
 from utils.train_utils import select_model, select_optimizer
 
 
 logger = logging.getLogger()
-writer = SummaryWriter("tensorboard")
+#writer = SummaryWriter("tensorboard")
 
 
 class Joint(BaseMethod):

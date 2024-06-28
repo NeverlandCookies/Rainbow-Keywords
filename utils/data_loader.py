@@ -67,7 +67,7 @@ class SpeechDataset(Dataset):
         file_name = self.data_frame.iloc[idx]["file_name"]
         label = self.data_frame.iloc[idx].get("label", -1)
 
-        audio_path = os.path.join("/home/xiaoyang/Dev/kws-efficient-cl/dataset/data", file_name)
+        audio_path = os.path.join("/root/Rainbow-Keywords/dataset/data", file_name)
         waveform = self.load_audio(audio_path)
         if self.transform and not self.is_training:
             waveform = self.transform(samples=waveform, sample_rate=self.sampling_rate)
@@ -86,6 +86,7 @@ class SpeechDataset(Dataset):
 
 
 def get_train_datalist(args, cur_iter: int) -> List:
+    #print(args.data_root)
     if args.mode == "joint":
         datalist = []
         for cur_iter_ in range(args.n_tasks):
@@ -108,11 +109,13 @@ def get_train_datalist(args, cur_iter: int) -> List:
             n_cls=args.n_cls_a_task,
             iter=cur_iter,
         )
+        print(collection_name)
 
         datalist = pd.read_json(os.path.join(args.data_root, f"{collection_name}.json")
                                 ).to_dict(orient="records")
         logger.info(f"[Train] Get datalist from {collection_name}.json")
-
+    #print(datalist)
+    #print(len(datalist))
     return datalist
 
 
