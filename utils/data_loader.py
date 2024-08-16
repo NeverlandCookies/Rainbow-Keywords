@@ -69,16 +69,25 @@ class SpeechDataset(Dataset):
 
         audio_path = os.path.join("/root/Rainbow-Keywords/dataset/data", file_name)
         waveform = self.load_audio(audio_path)
+        # 此为test或者计算uncertainty才会用到的部分
         if self.transform and not self.is_training:
             waveform = self.transform(samples=waveform, sample_rate=self.sampling_rate)
             waveform = torch.as_tensor(waveform, dtype=torch.float32)
+        # MFCC模块：必经之路——音频转频率图
         waveform = self.mfcc(waveform)
+        #-------------------------------------------NEW-----------------------------------------------------------------
+        non_aug_waveform = waveform
+        sample["non_aug_waveform"] = non_aug_waveform
+        #---------------------------------------------------------------------------------------------------------------
+        # 记下来就是augmentation部分（主要是specaug，因为mixup主要发生在methods中的_train中）
         if self.transform:
             if self.is_training and "specaug" in self.transform:
+                print('New data specaug enabled')
                 waveform = spec_augmentation(waveform)
         sample["waveform"] = waveform
         sample["label"] = label
         sample["file_name"] = file_name
+        # sample["non_aug_waveform"] =
         return sample
 
     def get_audio_class(self, y):

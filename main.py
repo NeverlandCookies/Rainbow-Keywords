@@ -24,6 +24,7 @@ from utils.method_manager import select_method
 
 
 def main():
+    torch.autograd.set_detect_anomaly(True)
     args = config.base_parser()
 
     # args.debug = True # For debug mode
@@ -74,6 +75,7 @@ def main():
     start_time = time.time()
     # start to train each tasks
     for cur_iter in range(args.n_tasks):
+        print(f"Task {cur_iter} start")
         if args.mode == "joint" and cur_iter > 0:
             return
         print("\n" + "#" * 50)

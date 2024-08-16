@@ -208,7 +208,8 @@ class BaseMethod:
             train_dataset = SpeechDataset(
                 pd.DataFrame(train_list),
                 dataset=self.dataset,
-                is_training=True
+                is_training=True,
+                transform=self.transform
             )
             # drop last becasue of BatchNorm1D in IcarlNet
             train_loader = DataLoader(

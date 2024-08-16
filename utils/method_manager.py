@@ -13,6 +13,7 @@ from methods.icarl import ICaRL
 from methods.regularization import EWC, RWalk
 from methods.joint import Joint
 from methods.bic import BiasCorrection
+from methods.derpp import Derpp
 
 logger = logging.getLogger()
 
@@ -71,6 +72,13 @@ def select_method(args, criterion, device, n_classes):
         )
     elif args.mode == "bic":
         method = BiasCorrection(
+            criterion=criterion,
+            device=device,
+            n_classes=n_classes,
+            **kwargs,
+        )
+    elif args.mode == "derpp":
+        method = Derpp(
             criterion=criterion,
             device=device,
             n_classes=n_classes,

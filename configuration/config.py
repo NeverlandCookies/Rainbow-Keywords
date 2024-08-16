@@ -144,6 +144,13 @@ def base_parser():
 
     # Debug
     parser.add_argument("--debug", action="store_true", help="Turn on Debug mode")
+    
+    parser.add_argument(
+        "--minibatch_size",
+        type=int,
+        default=32,
+        help="The minibatch size for buffer sampling",
+    )
 
     args = parser.parse_args()
     return args
